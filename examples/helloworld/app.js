@@ -1,8 +1,6 @@
-var app = require('./../../lib/app');
-
+var app = require('./../../lib/server');
 app.get('/', function(req, res){
-  res.send('Hello World!');
+   res.send('Hello World!');
 });
-
-app.listen(3000);
+app.run({hostname: 'localhost', port:3000});
 console.log('listening...');
