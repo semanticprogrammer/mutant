@@ -3,17 +3,22 @@ router = require('./../../lib/router').router,
 server = require('./../../lib/server');
 
 function app(router) {
-   var 
-   self = function(req, res){
-      var route = match(req.method, req.params.pathname);
+   with (router) {
+      get('/', function(req, res){
+         res.send('Hello World!');
+      });
+   };
+   
+   return function(req, res){
+      var route = router.match(req.method, req.params.pathname);
       if (route && route.handler) {
          route.handler.call(this, req, res);
       }
-   };   
-   router.get('/', function(req, res){
-      res.send('Hello World!');
-   });
-   return self;
+      else {
+         res.setNotFoundStatus();
+         res.send('<h3>Resource Not Found</h3><pre>' + req.params.pathname + '</pre>');
+      }
+   };
 }
 
 server.run({
