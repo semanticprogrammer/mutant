@@ -2,13 +2,16 @@ var
 router = require('./../../lib/router').router,
 server = require('./../../lib/server');
 
+var data = [
+{
+   uri: '/',
+   get: function(req, res) {
+      res.send('Hello World!');         
+   }
+}
+];
+
 function app(router) {
-   with (router) {
-      get('/', function(req, res){
-         res.send('Hello World!');
-      });
-   };
-   
    return function(req, res){
       var route = router.match(req.method, req.params.pathname);
       if (route && route.handler) {
@@ -24,6 +27,6 @@ function app(router) {
 server.run({
    hostname: 'localhost', 
    port:3000, 
-   router: app(router())
+   router: app(router(data))
 });
 console.log('listening...');
