@@ -1,6 +1,19 @@
 {
    "name": "mutant", 
-   "description": "amorphous by nature web framework with blurry line between code and data",
+   "description": "Amorphous kind of web framework, with blurry line between code and data",
    "version": "0.0.1", 
-   "author": "Vladimir Perlov <vladperl@hotmail.com>"
+   "author": "Vladimir Perlov <vladperl@hotmail.com>",
+   "contributors": [ 
+   {
+      "name": "Sergey Chernokosinskiy"
+   } 
+   ],
+  "keywords": ["framework", "nodeJS", "web", "crud", "rest"],   
+   "engines": {
+      "node": ">= 0.2.5"
+   }, 
+   "repository": {
+      "type": "git", 
+      "url": "http://github.com/semanticprogrammer/mutant"
+   }
 }
