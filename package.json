@@ -5,10 +5,10 @@
    "author": "Vladimir Perlov <vladperl@hotmail.com>",
    "contributors": [ 
    {
-      "name": "Sergey Chernokosinskiy"
+      "name": "Serge Chernokosinsky"
    } 
    ],
-   "keywords": ["framework", "nodeJS", "web", "crud", "rest"],
+   "keywords": ["virtualism", "framework", "nodeJS", "web", "crud", "rest"],
    "engines": {
       "node": ">= 0.4.8"
    }, 
