@@ -1,12 +1,10 @@
-require.paths.unshift('../../lib');
 var 
 fs = require('fs'),
 connect = require('connect'),
-router = require('router').router,
-app = require('app').app,
-server = require('server'),
+router = require('../../lib/router').router,
+app = require('../../lib/app').app,
+server = require('../../lib/server'),
 dust = require('dust'),
-util = require('util'),
 prepareApp = require('./prepare_app');
 
 var env = JSON.parse(fs.readFileSync('./config/environment.js', 'utf-8'));

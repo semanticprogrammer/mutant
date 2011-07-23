@@ -1,8 +1,7 @@
-require.paths.unshift('../../lib');
-var 
-router = require('router').router,
-app = require('app').app,
-server = require('server');
+var
+router = require('../../lib/router').router,
+app = require('../../lib/app').app,
+server = require('../../lib/server');
 
 var data = [
 {
