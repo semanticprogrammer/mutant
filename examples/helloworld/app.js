@@ -1,6 +1,6 @@
 var
 router = require('../../lib/router').router,
-app = require('../../lib/app').app,
+handler = require('../../lib/handler').handler,
 server = require('../../lib/server');
 
 var data = [
@@ -15,6 +15,6 @@ var data = [
 server.run({
    hostname: 'localhost', 
    port:3000, 
-   app: app(router(data))
+   handler: handler(router(data))
 });
 console.log('listening...');

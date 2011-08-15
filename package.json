@@ -10,7 +10,7 @@
    ],
    "keywords": ["virtualism", "framework", "nodeJS", "web", "crud", "rest"],
    "engines": {
-      "node": ">= 0.4.8"
+      "node": ">= 0.5.2"
    }, 
    "repository": {
       "type": "git", 

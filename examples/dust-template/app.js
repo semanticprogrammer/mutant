@@ -2,13 +2,13 @@ var
 fs = require('fs'),
 connect = require('connect'),
 router = require('../../lib/router').router,
-app = require('../../lib/app').app,
+handler = require('../../lib/handler').handler,
 server = require('../../lib/server'),
 dust = require('dust'),
 prepareApp = require('./prepare_app');
 
-var env = JSON.parse(fs.readFileSync('./config/environment.js', 'utf-8'));
-var data = JSON.parse(fs.readFileSync('./' + env.dataArea + '/posts.js', 'utf-8'));
+var env = require('./config/environment.json', 'utf-8');
+var data = require('./' + env.dataArea + '/posts.json', 'utf-8');
 
 var opts = {
    hostname: 'localhost', 
@@ -75,7 +75,7 @@ function start(callback) {
          res.end('<h3>Resource Not Found</h3><pre>' + req.params.pathname + '</pre>');
       }
       );
-   opts.app = app(router);
+   opts.handler = handler(router);
    prepareApp.prepareTemplates(opts.template, callback);
 }
 
