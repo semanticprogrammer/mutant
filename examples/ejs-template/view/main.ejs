@@ -1,0 +1,28 @@
+<html>
+   <head>
+    <link href="/style/main.css" rel="stylesheet"/>
+      <title>Main Page</title>
+   </head>
+   <body>
+   <div>
+      <h2>News and Events</h2>
+      <% posts.forEach(function(element) { %>
+      <article>
+         <header>
+            <h3><%= element.title %></h3>
+         </header>
+         <time datetime="<%= element.date %>" class="byline"><%= element.date %></time>
+         <% if (element.content) { %>
+         <section>
+            <%= element.content %>
+         </section>
+         <% } %>
+      </article>
+      <% }) %>
+   </div>
+   <hr/>
+   <div>
+      <strong>This is a page footer</strong>
+   </div>
+   </body>
+</html>

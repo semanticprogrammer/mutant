@@ -1,26 +1,15 @@
 var 
 fs = require('fs'),
+path = require('path'),
 connect = require('connect'),
 router = require('../../lib/router').router,
 handler = require('../../lib/handler').handler,
-server = require('../../lib/server'),
-dust = require('dust'),
-prepareApp = require('./prepare_app');
+server = require('../../lib/server');
 
 var env = require('./config/environment.json', 'utf-8');
-var data = require('./' + env.dataArea + '/posts.json', 'utf-8');
-
-var opts = {
-   hostname: 'localhost', 
-   port:3000, 
-   template: {
-      dir: env.template.area,
-      ext: env.template.ext,
-      compileFunc: dust.compile,
-      loadFunc: dust.loadSource,
-      renderFunc: dust.render
-   } 
-};
+var templatePath = path.join(__dirname, env.view.area);
+var templateResource = require('./resource/' + env.view.engine)({path: templatePath, ext: env.view.ext});
+var data = require('./' + env.data.area + '/posts.json', 'utf-8');
 
 var router_data = [
 {
@@ -52,7 +41,7 @@ var router_data = [
    }
 },
 {
-   get: connect.static(env.staticArea)
+   middleware: connect.static(__dirname + "/" + env.static.area)   
 }
 ];
 
@@ -60,12 +49,12 @@ function start(callback) {
    router = router(router_data);
    router.use(function(req, res, next) {
       res.render = function (templatename, data) {
-         opts.template.renderFunc(templatename, data, function (err, output) {
+         templateResource.render(templatename, data, function (err, output) {
             if (err) {
-               throw err;
+               res.end(err.message);
             }
             res.end(output);
-         });
+         })
       };
       next();
    });
@@ -74,12 +63,13 @@ function start(callback) {
          res.setNotFoundStatus();
          res.end('<h3>Resource Not Found</h3><pre>' + req.params.pathname + '</pre>');
       }
-      );
-   opts.handler = handler(router);
-   prepareApp.prepareTemplates(opts.template, callback);
+   );
+   env.app.handler = handler(router);   
+   callback();
 }
 
 start(function () {
-   server.run(opts);
-   console.log('listening...');
+   server.run(env.app);
+   console.log("Using template engine: " + env.view.engine);
+   console.log('listening on host: ' + env.app.hostname + ' port: ' + env.app.port);
 });

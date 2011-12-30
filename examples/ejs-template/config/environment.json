@@ -1,0 +1,17 @@
+{
+   "app": {
+      "hostname": "localhost", 
+      "port": 3000
+   },
+   "static": {
+      "area": "public"
+   },
+   "view": {
+      "area": "view",
+      "engine": "ejs",
+      "ext": ".ejs"
+   },
+   "data": {
+      "area": "data"
+   }
+}
