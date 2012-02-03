@@ -1,14 +1,15 @@
 {
    "name": "mutant", 
    "description": "Amorphous kind of web framework, with blurry line between code and data",
-   "version": "0.0.5",
-   "author": "Vladimir Perlov <vladperl@hotmail.com>",
-   "contributors": [ 
-   {
-      "name": "Serge Chernokosinsky"
-   } 
+   "version": "0.0.6",
+   "authors": [
+      {"name": "Vladimir Perlov"},
+      {"name": "Serge Chernokosinsky"}
    ],
    "keywords": ["framework", "nodeJS", "crud"],
+   "dependencies": {
+      "connect": "*"
+   },
    "engines": {
       "node": ">= 0.5.3"
    },
